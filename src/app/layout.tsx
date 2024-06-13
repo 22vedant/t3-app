@@ -1,10 +1,12 @@
 import "~/styles/globals.css";
-
+import Link from "next/link";
 function TopBar() {
   return (
     <div className="flex w-full justify-between bg-black p-4 font-mono text-white">
       <div>Gallery</div>
-      <div>Signin</div>
+      <div className="hover:underline">
+        <Link href={"/signin"}>Signin</Link>
+      </div>
     </div>
   );
 }
