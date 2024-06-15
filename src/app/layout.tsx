@@ -1,15 +1,13 @@
 import "~/styles/globals.css";
 import Link from "next/link";
-function TopBar() {
-  return (
-    <div className="flex w-full justify-between bg-black p-4 font-mono text-white">
-      <div>Gallery</div>
-      <div className="hover:underline">
-        <Link href={"/signin"}>Signin</Link>
-      </div>
-    </div>
-  );
-}
+import { ClerkProvider } from "@clerk/nextjs";
+import TopBar from "~/_components/page";
+import { Poppins } from "@next/font/google";
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font--poppins",
+  weight: "400",
+});
 
 export default function RootLayout({
   children,
@@ -17,11 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <TopBar />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={poppins.variable}>
+          <TopBar />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
