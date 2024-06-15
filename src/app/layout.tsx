@@ -4,10 +4,10 @@ import Link from "next/link";
 import { ClerkProvider } from "@clerk/nextjs";
 import TopBar from "~/_components/page";
 import { Poppins } from "@next/font/google";
-const poppins = Poppins({
+export const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font--poppins",
-  weight: "400",
+  variable: "--font-poppins",
+  weight: ["400", "700"],
 });
 
 export default function RootLayout({
@@ -17,8 +17,8 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={poppins.variable}>
+      <html lang="en" className={poppins.variable}>
+        <body>
           <TopBar />
           {children}
         </body>
