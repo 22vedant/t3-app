@@ -1,4 +1,5 @@
 import "~/styles/globals.css";
+import "@uploadthing/react/styles.css";
 import Link from "next/link";
 import { ClerkProvider } from "@clerk/nextjs";
 import TopBar from "~/_components/page";

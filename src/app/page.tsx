@@ -18,16 +18,14 @@ async function Images() {
     },
   });
   return (
-    <>
-      <div className={`flex flex-wrap ${poppins.variable} font-sans`}>
-        {[...images, ...images, ...images].map((image) => (
-          <div key={image.id} className=" w-48 gap-3 p-2">
-            <img src={image.url} alt="" />
-            <div>{image.name}</div>
-          </div>
-        ))}
-      </div>
-    </>
+    <div className={`flex flex-wrap ${poppins.variable} font-sans`}>
+      {images.map((image) => (
+        <div key={image.id} className=" w-48 gap-3 p-2">
+          <img src={image.url} alt="" />
+          <div>{image.name}</div>
+        </div>
+      ))}
+    </div>
   );
 }
 
