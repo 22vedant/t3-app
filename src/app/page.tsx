@@ -1,5 +1,6 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { Poppins } from "@next/font/google";
+import Image from "next/image";
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font--poppins",
@@ -15,10 +16,19 @@ const prisma = new PrismaClient({
 async function Images() {
   const images = await getMyImages();
   return (
-    <div className={`flex flex-wrap ${poppins.variable} font-sans`}>
+    <div className={`flex flex-wrap ${poppins.variable} gap-3 font-sans`}>
       {images.map((image) => (
-        <div key={image.id} className=" w-48 gap-3 p-2">
-          <img src={image.url} alt="" />
+        <div key={image.id} className=" w-48 p-2">
+          {/* <img src={image.url} alt="" /> */}
+          <Image
+            src={image.url}
+            alt={image.name}
+            // style={{ objectFit: "contain" }}
+            // fill
+            width={480}
+            height={480}
+          />
+          {/* <Image src={image.url} alt={"image"} width={} height={} /> */}
           <div>{image.name}</div>
         </div>
       ))}
@@ -27,6 +37,7 @@ async function Images() {
 }
 
 export default async function HomePage() {
+  const images = await getMyImages();
   return (
     <div>
       <SignedOut>
