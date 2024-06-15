@@ -7,16 +7,13 @@ const poppins = Poppins({
 });
 
 import { PrismaClient } from "@prisma/client";
+import { getMyImages } from "~/server/queries";
 const prisma = new PrismaClient({
   datasourceUrl: process.env.POSTGRES_URL,
 });
 
 async function Images() {
-  const images = await prisma.image.findMany({
-    orderBy: {
-      id: "desc",
-    },
-  });
+  const images = await getMyImages();
   return (
     <div className={`flex flex-wrap ${poppins.variable} font-sans`}>
       {images.map((image) => (

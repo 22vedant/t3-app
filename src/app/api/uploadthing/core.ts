@@ -3,15 +3,12 @@ import { UploadThingError } from "uploadthing/server";
 import { auth } from "@clerk/nextjs/server";
 const f = createUploadthing();
 
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient({
-  datasourceUrl: process.env.POSTGRES_URL,
-});
+import { prisma } from "../base";
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
-  imageUploader: f({ image: { maxFileSize: "4MB" } })
+  imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 5 } })
     // Set permissions and file types for this FileRoute
     .middleware(async ({ req }) => {
       // This code runs on your server before upload
@@ -31,6 +28,7 @@ export const ourFileRouter = {
         data: {
           name: file.name,
           url: file.url,
+          userId: metadata.userId,
         },
       });
 
