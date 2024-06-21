@@ -6,7 +6,7 @@ import { auth } from "@clerk/nextjs/server";
 export async function getMyImages() {
   const user = auth();
 
-  if (!user.userId) throw new Error("Unauthorised");
+  // if (!user.userId) throw new Error("Unauthorised");
   const images = await prisma.image.findMany({
     where: {
       userId: user.userId,

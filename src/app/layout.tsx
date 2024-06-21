@@ -19,10 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en" className={poppins.variable}>
+      <html lang="en" className={`font-sans ${poppins.variable} dark`}>
         <body>
-          <TopBar />
-          {children}
+          <div>
+            <TopBar />
+            <main className="">{children}</main>
+          </div>
           {modal}
           <div id="modal-root"></div>
         </body>

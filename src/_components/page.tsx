@@ -11,7 +11,7 @@ const poppins = Poppins({
 export default function TopBar() {
   const router = useRouter();
   return (
-    <div className="flex w-full items-center justify-between bg-black p-4 font-mono text-white">
+    <div className=" flex w-full items-center justify-between bg-black p-4 font-mono text-white">
       <div>Gallery</div>
       <UploadButton
         endpoint="imageUploader"

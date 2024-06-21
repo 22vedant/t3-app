@@ -17,9 +17,11 @@ const prisma = new PrismaClient({
 async function Images() {
   const images = await getMyImages();
   return (
-    <div className={`flex flex-wrap ${poppins.variable} gap-3 font-sans`}>
+    <div
+      className={`flex flex-wrap ${poppins.variable} justify-center gap-3 font-sans text-white`}
+    >
       {images.map((image) => (
-        <div key={image.id} className=" w-48 p-2 ">
+        <div key={image.id} className=" w-48 flex-col p-2">
           {/* <img src={image.url} alt="" /> */}
           <Link href={`/img/${image.id}`}>
             <Image
@@ -41,7 +43,7 @@ async function Images() {
 export default async function HomePage() {
   const images = await getMyImages();
   return (
-    <div>
+    <div className="text-white">
       <SignedOut>
         <div className="h-full w-full text-2xl">Please sign in </div>
       </SignedOut>
