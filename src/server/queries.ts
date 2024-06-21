@@ -18,3 +18,20 @@ export async function getMyImages() {
 
   return images;
 }
+
+export async function getImage(id: number) {
+  const user = auth();
+  if (!user.userId) throw new Error("Unauthorised");
+
+  const images = await prisma.image.findFirst({
+    where: {
+      id,
+    },
+  });
+
+  if (!images) throw new Error("Image not found");
+
+  if (images.userId !== user.userId) throw new Error("User is not authorised");
+
+  return images;
+}

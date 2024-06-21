@@ -9,6 +9,7 @@ const poppins = Poppins({
 
 import { PrismaClient } from "@prisma/client";
 import { getMyImages } from "~/server/queries";
+import Link from "next/link";
 const prisma = new PrismaClient({
   datasourceUrl: process.env.POSTGRES_URL,
 });
@@ -18,17 +19,18 @@ async function Images() {
   return (
     <div className={`flex flex-wrap ${poppins.variable} gap-3 font-sans`}>
       {images.map((image) => (
-        <div key={image.id} className=" w-48 p-2">
+        <div key={image.id} className=" w-48 p-2 ">
           {/* <img src={image.url} alt="" /> */}
-          <Image
-            src={image.url}
-            alt={image.name}
-            // style={{ objectFit: "contain" }}
-            // fill
-            width={480}
-            height={480}
-          />
-          {/* <Image src={image.url} alt={"image"} width={} height={} /> */}
+          <Link href={`/img/${image.id}`}>
+            <Image
+              src={image.url}
+              alt={image.name}
+              // style={{ objectFit: "contain" }}
+              // fill
+              width={480}
+              height={480}
+            />
+          </Link>
           <div>{image.name}</div>
         </div>
       ))}
